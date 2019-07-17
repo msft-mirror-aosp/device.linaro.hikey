@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
+
 ifneq (,$(filter $(TARGET_PRODUCT),hikey960_tv hikey_tv))
 # Setup TV Build
 USE_OEM_TV_APP := true
@@ -29,18 +33,9 @@ endif
 # Set vendor kernel path
 PRODUCT_VENDOR_KERNEL_HEADERS := device/linaro/hikey/kernel-headers
 
-# Hikey was first supported from Marshmallow 6.0, API level 23
-# PRODUCT_SHIPPING_API_LEVEL is required from Pie build by the CTS test of
-# CtsOsTestCases android.os.cts.BuildTest#testSdkInt
-# as reported here:
-# https://bugs.linaro.org/show_bug.cgi?id=4068
-# https://source.android.com/setup/start/build-numbers
-# Here we set it to 25 first, because Gatekeeper function
-# needs to be supported when set to 26 or above,
-# which we could not boot successfully with the default implementation
-# enabled yet. Will back to set it to the latest number when we have
-# all necessary features supported.
-PRODUCT_SHIPPING_API_LEVEL := 25
+PRODUCT_SHIPPING_API_LEVEL := 29
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+
 
 # Set custom settings
 DEVICE_PACKAGE_OVERLAYS := device/linaro/hikey/overlay
@@ -71,6 +66,7 @@ PRODUCT_RUNTIMES := runtime_libart_default
 
 # Build default bluetooth a2dp and usb audio HALs
 PRODUCT_PACKAGES += audio.a2dp.default \
+		    audio.bluetooth.default \
 		    audio.usb.default \
 		    audio.r_submix.default \
 		    tinyplay
@@ -80,14 +76,14 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@4.0-impl:32 \
     android.hardware.audio@2.0-service \
     android.hardware.broadcastradio@1.0-impl \
-    android.hardware.soundtrigger@2.0-impl
+    android.hardware.soundtrigger@2.0-impl \
+    android.hardware.bluetooth.audio@2.0-impl
 
 PRODUCT_PACKAGES += vndk_package
 
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service \
-    android.hardware.bluetooth.audio@2.0-impl
+    android.hardware.drm@1.0-service
 
 PRODUCT_PACKAGES += libGLES_android
 
@@ -118,6 +114,10 @@ PRODUCT_PACKAGES += \
 #GNSS HAL
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl
+
+# Software Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-service.software
 
 # Keymaster HAL
 PRODUCT_PACKAGES += \
@@ -230,7 +230,10 @@ PRODUCT_COPY_FILES += \
 USE_XML_AUDIO_POLICY_CONF := 1
 PRODUCT_COPY_FILES += \
     device/linaro/hikey/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    device/linaro/hikey/audio/audio_policy_configuration_bluetooth_legacy_hal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_bluetooth_legacy_hal.xml \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \

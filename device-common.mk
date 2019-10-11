@@ -57,7 +57,7 @@ PRODUCT_PROPERTY_OVERRIDES += qemu.hw.mainkeys=0
 PRODUCT_PACKAGES += ssh sftp scp sshd ssh-keygen sshd_config start-ssh
 
 # Add wifi-related packages
-PRODUCT_PACKAGES += libwpa_client wpa_supplicant hostapd wificond wifilogd
+PRODUCT_PACKAGES += libwpa_client wpa_supplicant hostapd wificond
 PRODUCT_PROPERTY_OVERRIDES += wifi.interface=wlan0 \
                               wifi.supplicant_scan_interval=15
 
@@ -278,3 +278,8 @@ PRODUCT_PACKAGES += \
     libunwindstack.vndk-sp\
     liblzma.vndk-sp\
     libion.vndk-sp\
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.0-service \
+    android.hardware.health@2.0-impl

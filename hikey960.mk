@@ -23,11 +23,10 @@ ifndef HIKEY_USES_GKI
 endif
 
 #
-# Inherit the full_base and device configurations
+# Inherit the common device configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/linaro/hikey/hikey960/device-hikey960.mk)
 $(call inherit-product, device/linaro/hikey/device-common.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 #setup dm-verity configs
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/ff3b0000.ufs/by-name/system
@@ -48,10 +47,11 @@ PRODUCT_MODEL := AOSP on hikey960
 ifneq ($(HIKEY_USES_GKI),)
   HIKEY_MOD_DIR := device/linaro/hikey-kernel/hikey960/$(TARGET_KERNEL_USE)
   HIKEY_MODS := $(wildcard $(HIKEY_MOD_DIR)/*.ko)
+  SDCARDFS_KO := $(wildcard $(HIKEY_MOD_DIR)/sdcardfs*.ko)
   ifneq ($(HIKEY_MODS),)
     BOARD_VENDOR_KERNEL_MODULES += $(HIKEY_MODS)
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
 	$(HIKEY_MOD_DIR)/ion_cma_heap.ko \
-	$(HIKEY_MOD_DIR)/sdcardfs.ko
+	$(SDCARDFS_KO)
   endif
 endif

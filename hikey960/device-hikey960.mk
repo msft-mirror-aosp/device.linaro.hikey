@@ -58,7 +58,7 @@ PRODUCT_PACKAGES +=	libGLES_mali.so \
 			libmalicore.bc \
 			END_USER_LICENCE_AGREEMENT.txt
 
-ifdef $(MALI_RS_DRIVER_AVAILABLE)
+ifdef MALI_RS_DRIVER_AVAILABLE
 PRODUCT_COPY_FILES += \
         $(LOCAL_PATH)/../mali/bifrost/lib/libclcore.bc:vendor/lib/libclcore.bc \
         $(LOCAL_PATH)/../mali/bifrost/lib/libclcore_neon.bc:vendor/lib/libclcore_neon.bc \

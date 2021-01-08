@@ -50,11 +50,13 @@ ifneq ($(HIKEY_USES_GKI),)
   HIKEY_MODS := $(wildcard $(HIKEY_MOD_DIR)/*.ko)
   SDCARDFS_KO := $(wildcard $(HIKEY_MOD_DIR)/sdcardfs*.ko)
   CMA_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/cma_heap.ko)
+  SYSTEM_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/system_heap.ko)
   ION_CMA_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/ion_cma_heap*.ko)
   ifneq ($(HIKEY_MODS),)
     BOARD_VENDOR_KERNEL_MODULES += $(HIKEY_MODS)
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
         $(CMA_HEAP_KO) \
+        $(SYSTEM_HEAP_KO) \
         $(ION_CMA_HEAP_KO) \
         $(SDCARDFS_KO)
   endif

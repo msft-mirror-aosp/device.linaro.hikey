@@ -60,10 +60,4 @@ BOARD_SUPER_PARTITION_GROUPS := hikey960_dynamic_partitions
 BOARD_HIKEY960_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
 BOARD_HIKEY960_DYNAMIC_PARTITIONS_SIZE := 4915724288
 
-# !!! This HACK needs to be removed !!!
-# Until the ptable is updated, we flash super.img to system
-# but this is deprecated. We need to update the ptable and
-# roll that out. Then this can be removed.
-BOARD_SUPER_PARTITION_METADATA_DEVICE := system
-
 TARGET_RECOVERY_FSTAB := device/linaro/hikey/hikey960/fstab.hikey960

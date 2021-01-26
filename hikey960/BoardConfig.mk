@@ -41,15 +41,29 @@ endif
 BOARD_MKBOOTIMG_ARGS := --base 0x0 --tags_offset 0x07a00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4915724288    # 4688MB
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 25845301248 # 24648MB
 BOARD_FLASH_BLOCK_SIZE := 512
 
-# Vendor partition definitions
+# Vendor/system_ext/product partition definitions
 TARGET_COPY_OUT_VENDOR := vendor
-BOARD_VENDORIMAGE_PARTITION_SIZE := 822083584     # 784MB
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_JOURNAL_SIZE := 0
-BOARD_VENDORIMAGE_EXTFS_INODE_COUNT := 2048
+TARGET_COPY_OUT_SYSTEM_EXT := system_ext
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_PRODUCT := product
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+
+#Dynamic Partition details
+TARGET_USE_DYNAMIC_PARTITIONS := true
+BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
+BOARD_SUPER_PARTITION_SIZE := 4915724288
+BOARD_SUPER_PARTITION_GROUPS := hikey960_dynamic_partitions
+BOARD_HIKEY960_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
+BOARD_HIKEY960_DYNAMIC_PARTITIONS_SIZE := 4915724288
+
+# !!! This HACK needs to be removed !!!
+# Until the ptable is updated, we flash super.img to system
+# but this is deprecated. We need to update the ptable and
+# roll that out. Then this can be removed.
+BOARD_SUPER_PARTITION_METADATA_DEVICE := system
 
 TARGET_RECOVERY_FSTAB := device/linaro/hikey/hikey960/fstab.hikey960

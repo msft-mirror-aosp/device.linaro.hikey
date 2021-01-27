@@ -44,7 +44,7 @@ function flashing_atf_uefi () {
 	fastboot flash fip "${INSTALLER_DIR}"/fip.bin
 
 	fastboot flash boot "${ANDROID_PRODUCT_OUT}"/boot.img
-	fastboot flash system "${ANDROID_PRODUCT_OUT}"/super.img
+	fastboot flash super "${ANDROID_PRODUCT_OUT}"/super.img
 	fastboot flash userdata "${ANDROID_PRODUCT_OUT}"/userdata.img
 }
 

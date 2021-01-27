@@ -10,7 +10,7 @@ TARGET_NO_DTIMAGE := false
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=hikey960 firmware_class.path=/vendor/firmware efi=noruntime init=/init
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/ff3b0000.ufs
-BOARD_KERNEL_CMDLINE += loglevel=15
+BOARD_KERNEL_CMDLINE += loglevel=15 androidboot.slot_suffix=_a
 
 ifeq ($(TARGET_BUILTIN_EDID), true)
 BOARD_KERNEL_CMDLINE += drm_kms_helper.edid_firmware=edid/1920x1080.bin

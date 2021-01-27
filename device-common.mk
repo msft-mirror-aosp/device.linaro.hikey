@@ -43,10 +43,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Set custom settings
 DEVICE_PACKAGE_OVERLAYS := device/linaro/hikey/overlay
-ifneq (,$(filter $(TARGET_PRODUCT),hikey960_tv hikey_tv))
-# Set TV Custom Settings
-DEVICE_PACKAGE_OVERLAYS += device/google/atv/overlay
-endif
 
 #avoid usb crash
 PRODUCT_PRODUCT_PROPERTIES += \

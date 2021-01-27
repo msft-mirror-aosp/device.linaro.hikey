@@ -24,7 +24,6 @@ fastboot flash fw_lpm3   "${INSTALLER_DIR}"/hisi-lpm3.img
 fastboot flash trustfirmware   "${INSTALLER_DIR}"/hisi-bl31.bin
 fastboot flash boot "${ANDROID_PRODUCT_OUT}"/boot.img
 fastboot flash dts "${ANDROID_PRODUCT_OUT}"/dt.img
-fastboot flash system "${ANDROID_PRODUCT_OUT}"/system.img
-fastboot flash vendor "${ANDROID_PRODUCT_OUT}"/vendor.img
+fastboot flash system "${ANDROID_PRODUCT_OUT}"/super.img
 fastboot flash userdata "${ANDROID_PRODUCT_OUT}"/userdata.img
 fastboot reboot

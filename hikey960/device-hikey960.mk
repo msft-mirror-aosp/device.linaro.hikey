@@ -14,18 +14,33 @@
 # limitations under the License.
 #
 
+# Enable Virtual A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    product \
+    system \
+    system_ext \
+    vendor
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
 PRODUCT_COPY_FILES +=	$(TARGET_PREBUILT_KERNEL):kernel \
 			$(TARGET_PREBUILT_DTB):hi3660-hikey960.dtb
 
 PRODUCT_COPY_FILES +=	$(LOCAL_PATH)/fstab.hikey960:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.hikey960 \
-			device/linaro/hikey/fstab.ramdisk:$(TARGET_COPY_OUT_RAMDISK)/fstab.hikey960 \
+			device/linaro/hikey/fstab.ramdisk960:$(TARGET_COPY_OUT_RAMDISK)/fstab.hikey960 \
 			device/linaro/hikey/hikey960/init.hikey960.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.hikey960.rc \
 			device/linaro/hikey/init.hikey960.power.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.hikey960.power.rc \
-			device/linaro/hikey/init.common.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.hikey960.usb.rc \
+			device/linaro/hikey/hikey960/init.hikey960.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.hikey960.usb.rc \
 			device/linaro/hikey/ueventd.common.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
 			device/linaro/hikey/common.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/hikey960.kl \
 			frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level.xml \
-			frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version.xml
+			frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version.xml \
+			frameworks/native/data/etc/android.software.vulkan.deqp.level-2020-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
+
+PRODUCT_BUILD_SUPER_PARTITION := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_USE_DYNAMIC_PARTITION_SIZE :=true
 
 # Copy BT firmware
 PRODUCT_COPY_FILES += \
@@ -57,7 +72,7 @@ PRODUCT_PACKAGES +=	libGLES_mali.so \
 			libmalicore.bc \
 			END_USER_LICENCE_AGREEMENT.txt
 
-ifdef $(MALI_RS_DRIVER_AVAILABLE)
+ifdef MALI_RS_DRIVER_AVAILABLE
 PRODUCT_COPY_FILES += \
         $(LOCAL_PATH)/../mali/bifrost/lib/libclcore.bc:vendor/lib/libclcore.bc \
         $(LOCAL_PATH)/../mali/bifrost/lib/libclcore_neon.bc:vendor/lib/libclcore_neon.bc \

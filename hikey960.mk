@@ -29,13 +29,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/linaro/hikey/hikey960/device-hikey960.mk)
 $(call inherit-product, device/linaro/hikey/device-common.mk)
 
-#setup dm-verity configs
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/ff3b0000.ufs/by-name/system
-PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc/ff3b0000.ufs/by-name/vendor
-$(call inherit-product, build/target/product/verity.mk)
-PRODUCT_SUPPORTS_BOOT_SIGNER := false
-PRODUCT_SUPPORTS_VERITY_FEC := false
-
 PRODUCT_PROPERTY_OVERRIDES += ro.opengles.version=196608
 
 #

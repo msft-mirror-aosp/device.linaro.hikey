@@ -29,13 +29,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/linaro/hikey/hikey960/device-hikey960.mk)
 $(call inherit-product, device/linaro/hikey/device-common.mk)
 
-#setup dm-verity configs
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/ff3b0000.ufs/by-name/system
-PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc/ff3b0000.ufs/by-name/vendor
-$(call inherit-product, build/target/product/verity.mk)
-PRODUCT_SUPPORTS_BOOT_SIGNER := false
-PRODUCT_SUPPORTS_VERITY_FEC := false
-
 PRODUCT_PROPERTY_OVERRIDES += ro.opengles.version=196608
 
 #
@@ -50,11 +43,13 @@ ifneq ($(HIKEY_USES_GKI),)
   HIKEY_MODS := $(wildcard $(HIKEY_MOD_DIR)/*.ko)
   SDCARDFS_KO := $(wildcard $(HIKEY_MOD_DIR)/sdcardfs*.ko)
   CMA_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/cma_heap.ko)
+  SYSTEM_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/system_heap.ko)
   ION_CMA_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/ion_cma_heap*.ko)
   ifneq ($(HIKEY_MODS),)
     BOARD_VENDOR_KERNEL_MODULES += $(HIKEY_MODS)
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
         $(CMA_HEAP_KO) \
+        $(SYSTEM_HEAP_KO) \
         $(ION_CMA_HEAP_KO) \
         $(SDCARDFS_KO)
   endif

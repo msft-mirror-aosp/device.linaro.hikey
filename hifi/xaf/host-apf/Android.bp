@@ -12,6 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_linaro_hikey_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-MIT
+    default_applicable_licenses: ["device_linaro_hikey_license"],
+}
+
 cc_prebuilt_binary {
     name: "dhifimesg",
     srcs: ["tools/dhifimesg"],

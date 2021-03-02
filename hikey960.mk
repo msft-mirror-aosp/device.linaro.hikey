@@ -43,6 +43,8 @@ ifneq ($(HIKEY_USES_GKI),)
   HIKEY_MODS := $(wildcard $(HIKEY_MOD_DIR)/*.ko)
   SDCARDFS_KO := $(wildcard $(HIKEY_MOD_DIR)/sdcardfs*.ko)
   CMA_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/cma_heap.ko)
+  DEFERRED_FREE_KO := $(wildcard $(HIKEY_MOD_DIR)/deferred-free-helper.ko)
+  PAGE_POOL_KO := $(wildcard $(HIKEY_MOD_DIR)/page_pool.ko)
   SYSTEM_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/system_heap.ko)
   ION_CMA_HEAP_KO := $(wildcard $(HIKEY_MOD_DIR)/ion_cma_heap*.ko)
   ifneq ($(HIKEY_MODS),)
@@ -50,6 +52,8 @@ ifneq ($(HIKEY_USES_GKI),)
     BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
         $(CMA_HEAP_KO) \
         $(SYSTEM_HEAP_KO) \
+        $(DEFERRED_FREE_KO) \
+        $(PAGE_POOL_KO) \
         $(ION_CMA_HEAP_KO) \
         $(SDCARDFS_KO)
   endif

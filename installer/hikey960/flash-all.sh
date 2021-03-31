@@ -26,5 +26,5 @@ fastboot flash boot "${ANDROID_PRODUCT_OUT}"/boot.img
 fastboot flash dts "${ANDROID_PRODUCT_OUT}"/dt.img
 fastboot flash super "${ANDROID_PRODUCT_OUT}"/super.img
 fastboot flash userdata "${ANDROID_PRODUCT_OUT}"/userdata.img
-fastboot format cache
+fastboot format:ext4:10000000 cache
 fastboot reboot

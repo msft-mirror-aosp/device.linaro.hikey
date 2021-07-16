@@ -97,11 +97,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
 
-ifeq ($(HIKEY_USE_LEGACY_TI_BLUETOOTH), true)
-PRODUCT_PACKAGES += android.hardware.bluetooth@1.0-service.hikey uim
-else
 PRODUCT_PACKAGES += android.hardware.bluetooth@1.1-service.btlinux
-endif
 
 #
 # Power HAL

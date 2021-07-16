@@ -51,9 +51,7 @@ PRODUCT_PACKAGES += power.hikey
 # Sensors HAL
 PRODUCT_PACKAGES += sensors.hikey
 
-ifeq ($(HIKEY_USE_DRM_HWCOMPOSER), true)
-  PRODUCT_PACKAGES += hwcomposer.drm_hikey
-endif
+PRODUCT_PACKAGES += hwcomposer.drm_hikey
 
 # Include mali blobs from ARM
 PRODUCT_PACKAGES += libGLES_mali.so END_USER_LICENCE_AGREEMENT.txt

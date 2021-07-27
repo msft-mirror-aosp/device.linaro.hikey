@@ -76,11 +76,12 @@ PRODUCT_PACKAGES += audio.a2dp.default \
 		    tinyplay
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@4.0-impl:32 \
-    android.hardware.audio.effect@4.0-impl:32 \
-    android.hardware.audio@2.0-service \
-    android.hardware.soundtrigger@2.0-impl \
+    android.hardware.audio.service \
+    android.hardware.audio@7.0-impl \
+    android.hardware.audio.effect@7.0-impl \
+    android.hardware.soundtrigger@2.2-impl \
     android.hardware.bluetooth.audio@2.0-impl
+
 
 PRODUCT_PACKAGES += vndk_package
 
@@ -94,7 +95,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.composer@2.1-service \
-    android.hardware.graphics.mapper@2.0-impl
+    android.hardware.graphics.mapper@2.0-impl-2.1 \
 
 # Memtrack
 PRODUCT_PACKAGES += memtrack.default \
@@ -112,9 +113,6 @@ PRODUCT_PACKAGES += \
 	android.hardware.power@1.1-impl \
 	android.hardware.power@1.1-service.hikey-common
 
-#GNSS HAL
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl
 
 # Software Gatekeeper HAL
 PRODUCT_PACKAGES += \

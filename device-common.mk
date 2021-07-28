@@ -34,7 +34,7 @@ endif
 # Set vendor kernel path
 PRODUCT_VENDOR_KERNEL_HEADERS := device/linaro/hikey/kernel-headers
 
-PRODUCT_SHIPPING_API_LEVEL := 29
+PRODUCT_SHIPPING_API_LEVEL := 31
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 
@@ -76,17 +76,18 @@ PRODUCT_PACKAGES += audio.a2dp.default \
 		    tinyplay
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@4.0-impl:32 \
-    android.hardware.audio.effect@4.0-impl:32 \
-    android.hardware.audio@2.0-service \
-    android.hardware.soundtrigger@2.0-impl \
+    android.hardware.audio.service \
+    android.hardware.audio@7.0-impl \
+    android.hardware.audio.effect@7.0-impl \
+    android.hardware.soundtrigger@2.2-impl \
     android.hardware.bluetooth.audio@2.0-impl
+
 
 PRODUCT_PACKAGES += vndk_package
 
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service
+    android.hardware.drm@1.3-service.clearkey \
+    android.hardware.drm@1.3-service.widevine \
 
 # Graphics HAL
 PRODUCT_PACKAGES += \
@@ -94,12 +95,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.composer@2.1-service \
-    android.hardware.graphics.mapper@2.0-impl
-
-# Memtrack
-PRODUCT_PACKAGES += memtrack.default \
-    android.hardware.memtrack@1.0-service \
-    android.hardware.memtrack@1.0-impl
+    android.hardware.graphics.mapper@2.0-impl-2.1 \
 
 ifeq ($(HIKEY_USE_LEGACY_TI_BLUETOOTH), true)
 PRODUCT_PACKAGES += android.hardware.bluetooth@1.0-service.hikey uim
@@ -107,14 +103,18 @@ else
 PRODUCT_PACKAGES += android.hardware.bluetooth@1.1-service.btlinux
 endif
 
-# PowerHAL
+#
+# Power HAL
+#
 PRODUCT_PACKAGES += \
-	android.hardware.power@1.1-impl \
-	android.hardware.power@1.1-service.hikey-common
+    android.hardware.power-service.example
 
-#GNSS HAL
+#
+# PowerStats HAL
+#
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl
+    android.hardware.power.stats-service.example
+
 
 # Software Gatekeeper HAL
 PRODUCT_PACKAGES += \
@@ -248,7 +248,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/linaro/hikey/init.common.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.common.rc \
 
+
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-service \
-    android.hardware.health@2.0-impl
+    android.hardware.health@2.1-impl-cuttlefish \
+    android.hardware.health@2.1-service

@@ -34,7 +34,7 @@ endif
 # Set vendor kernel path
 PRODUCT_VENDOR_KERNEL_HEADERS := device/linaro/hikey/kernel-headers
 
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 31
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 
@@ -96,11 +96,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
-
-# Memtrack
-PRODUCT_PACKAGES += memtrack.default \
-    android.hardware.memtrack@1.0-service \
-    android.hardware.memtrack@1.0-impl
 
 ifeq ($(HIKEY_USE_LEGACY_TI_BLUETOOTH), true)
 PRODUCT_PACKAGES += android.hardware.bluetooth@1.0-service.hikey uim

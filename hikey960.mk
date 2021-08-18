@@ -5,18 +5,6 @@ LOCAL_KERNEL_HOME ?= device/linaro/hikey-kernel/hikey960/$(TARGET_KERNEL_USE)
 TARGET_PREBUILT_KERNEL := $(LOCAL_KERNEL_HOME)/Image.gz-dtb
 TARGET_PREBUILT_DTB := $(LOCAL_KERNEL_HOME)/hi3660-hikey960.dtb
 
-ifeq ($(TARGET_KERNEL_USE), 4.4)
-  HIKEY_USE_DRM_HWCOMPOSER := false
-  HIKEY_USE_LEGACY_TI_BLUETOOTH := true
-else
-  ifeq ($(TARGET_KERNEL_USE), 4.9)
-    HIKEY_USE_DRM_HWCOMPOSER := false
-  else
-    HIKEY_USE_DRM_HWCOMPOSER := true
-  endif
-  HIKEY_USE_LEGACY_TI_BLUETOOTH := false
-endif
-
 ifndef HIKEY_USES_GKI
   ifeq ($(TARGET_KERNEL_USE), 5.4)
     HIKEY_USES_GKI := true

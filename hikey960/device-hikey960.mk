@@ -92,9 +92,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += sys.usb.controller=ff100000.dwc3
 
 PRODUCT_PACKAGES += sensors.hikey960
 
-ifeq ($(HIKEY_USE_DRM_HWCOMPOSER), true)
-  PRODUCT_PACKAGES += hwcomposer.drm_hikey960
-endif
+PRODUCT_PACKAGES += hwcomposer.drm_hikey960
 
 ifneq ($(TARGET_NO_RECOVERY),true)
 PRODUCT_COPY_FILES += \

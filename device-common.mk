@@ -97,11 +97,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
 
-ifeq ($(HIKEY_USE_LEGACY_TI_BLUETOOTH), true)
-PRODUCT_PACKAGES += android.hardware.bluetooth@1.0-service.hikey uim
-else
 PRODUCT_PACKAGES += android.hardware.bluetooth@1.1-service.btlinux
-endif
 
 #
 # Power HAL
@@ -215,9 +211,6 @@ PRODUCT_COPY_FILES +=  \
         frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml \
         frameworks/native/data/etc/android.software.device_admin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_admin.xml
 
-# Include BT modules
-$(call inherit-product, device/linaro/hikey/wpan/ti-wpan-products.mk)
-
 PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
         frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
@@ -253,3 +246,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl-cuttlefish \
     android.hardware.health@2.1-service
+
+# TODO: disable this service once we implement system suspend
+PRODUCT_PACKAGES += \
+    suspend_blocker

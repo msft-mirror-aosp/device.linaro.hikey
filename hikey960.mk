@@ -11,11 +11,14 @@ ifndef HIKEY_USES_GKI
   endif
 endif
 
-#
+
+include $(LOCAL_PATH)/vendor-package-ver.mk
+
 # Inherit the common device configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/linaro/hikey/hikey960/device-hikey960.mk)
 $(call inherit-product, device/linaro/hikey/device-common.mk)
+$(call inherit-product, vendor/linaro/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/hikey960.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += ro.opengles.version=196608
 
@@ -46,3 +49,6 @@ ifneq ($(HIKEY_USES_GKI),)
         $(SDCARDFS_KO)
   endif
 endif
+
+PRODUCT_SOONG_NAMESPACES += \
+  vendor/linaro/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/mali/bifrost

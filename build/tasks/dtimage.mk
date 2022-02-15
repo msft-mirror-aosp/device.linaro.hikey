@@ -1,7 +1,7 @@
 ifneq ($(filter hikey%, $(TARGET_DEVICE)),)
 ifneq ($(TARGET_NO_DTIMAGE), true)
 
-MKDTIMG := device/linaro/hikey/installer/hikey960/mkdtimg
+MKDTIMG := $(LINARO_VENDOR_PATH)/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/bootloader/mkdtimg
 DTB := $(PRODUCT_OUT)/hi3660-hikey960.dtb
 
 $(PRODUCT_OUT)/dt.img: $(DTB)

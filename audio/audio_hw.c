@@ -42,6 +42,7 @@
 #include <audio_effects/effect_aec.h>
 
 #include <sys/ioctl.h>
+#include <linux/audio_hifi.h>
 
 #define CARD_OUT 0
 #define PORT_CODEC 0

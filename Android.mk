@@ -24,6 +24,16 @@ ifneq ($(filter hikey%, $(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,.conf))
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,.img))
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,.kl))
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,.rc))
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,.xml))
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,fstab.hikey))
+$(eval $(call declare-1p-copy-files,device/linaro/hikey,fstab.hikey960))
+
+$(eval $(call declare-copy-files-license-metadata,device/linaro/hikey/bt-wifi-firmware-util,,SPDX-license-identifier-BSD,notice,device/linaro/hikey/bt-wifi-firmware-util/NOTICE,))
+
 # if some modules are built directly from this directory (not subdirectories),
 # their rules should be written here.
 

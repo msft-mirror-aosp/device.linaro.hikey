@@ -38,7 +38,7 @@ else
   $(warning    $(VND_PKG_URL) )
   $(warning And extract in the ANDROID_TOP_DIR)
 endif
-$(warning, EXPECTED_LINARO_VENDOR_VERSION=$(EXPECTED_LINARO_VENDOR_VERSION))
+$(warning EXPECTED_LINARO_VENDOR_VERSION=$(EXPECTED_LINARO_VENDOR_VERSION))
 
 ifneq (,$(filter $(TARGET_PRODUCT),hikey960_tv hikey_tv))
 # Setup TV Build

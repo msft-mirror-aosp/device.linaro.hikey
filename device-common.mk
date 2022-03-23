@@ -17,6 +17,28 @@
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+# Check vendor package version
+# If you need to make changes to the vendor partition,
+# please modify the source git project here:
+#   https://staging-git.codelinaro.org/linaro/linaro-aosp/aosp-linaro-vendor-package
+include $(LOCAL_PATH)/vendor-package-ver.mk
+ifneq (,$(wildcard $(LINARO_VENDOR_PATH)/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/version.mk))
+  # Unfortunately inherit-product doesn't export build variables from the
+  # called make file to the caller, so we have to include it directly here.
+  include $(LINARO_VENDOR_PATH)/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/version.mk
+  ifneq ($(TARGET_LINARO_VENDOR_VERSION), $(EXPECTED_LINARO_VENDOR_VERSION))
+    $(warning TARGET_LINARO_VENDOR_VERSION ($(TARGET_LINARO_VENDOR_VERSION)) does not match exiting the build ($(EXPECTED_LINARO_VENDOR_VERSION)).)
+    $(warning Please download new binaries here:)
+    $(warning    $(VND_PKG_URL) )
+    $(warning And extract in the ANDROID_TOP_DIR)
+  endif
+else
+  $(warning Missing Linaro Vendor Package!)
+  $(warning Please download new binaries here:)
+  $(warning    $(VND_PKG_URL) )
+  $(warning And extract in the ANDROID_TOP_DIR)
+endif
+$(warning EXPECTED_LINARO_VENDOR_VERSION=$(EXPECTED_LINARO_VENDOR_VERSION))
 
 ifneq (,$(filter $(TARGET_PRODUCT),hikey960_tv hikey_tv))
 # Setup TV Build

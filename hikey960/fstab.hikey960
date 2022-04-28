@@ -6,7 +6,7 @@
 #/dev/block/platform/soc/ff3b0000.ufs/by-name/system_a    /system    ext4    ro                                                                   wait
 #/dev/block/platform/soc/ff3b0000.ufs/by-name/cache       /cache     ext4    discard,noauto_da_alloc,data=ordered,user_xattr,barrier=1    wait
 #/dev/block/platform/soc/ff3b0000.ufs/by-name/userdata    /data      ext4    discard,noauto_da_alloc,data=ordered,user_xattr,barrier=1    wait
-/dev/block/by-name/userdata    /data      ext4    discard,noatime,nosuid,nodev,noauto_da_alloc,data=ordered,user_xattr,barrier=1,inlinecrypt    latemount,wait,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,quota
+/dev/block/by-name/userdata    /data      ext4    discard,noatime,nosuid,nodev,noauto_da_alloc,data=ordered,user_xattr,barrier=1    latemount,wait,formattable,fileencryption=aes-256-xts,keydirectory=/metadata/vold/metadata_encryption,quota
 /dev/block/by-name/cache	/metadata       ext4    noatime,nosuid,nodev,discard     wait,formattable,first_stage_mount,check
 /devices/platform/soc/ff37f000.dwmmc1/mmc_host/mmc*      auto       auto    defaults    voldmanaged=sdcard1:auto,encryptable=userdata
 /devices/platform/soc/ff200000.hisi_usb/ff100000.dwc3/xhci-hcd.*.auto/usb*               auto               auto      defaults  voldmanaged=usbdisk:auto,encryptable=userdata

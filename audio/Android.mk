@@ -24,6 +24,8 @@ include $(CLEAR_VARS)
 
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0
+LOCAL_LICENSE_CONDITIONS := notice
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_VENDOR_MODULE := true
 
@@ -36,16 +38,4 @@ LOCAL_C_INCLUDES += \
         system/media/audio_utils/include \
         system/media/audio_effects/include
 
-ifeq ($(TARGET_ENABLE_DSP_DEVICE), true)
-LOCAL_CFLAGS += -DENABLE_XAF_DSP_DEVICE
-LOCAL_C_INCLUDES += \
-        $(LOCAL_PATH)/../hifi/xaf/host-apf/include \
-        $(LOCAL_PATH)/../hifi/xaf/host-apf/include/os/android \
-        $(LOCAL_PATH)/../hifi/xaf/host-apf/include/sys/fio\
-        $(LOCAL_PATH)/../hifi/xaf/host-apf/include/audio \
-        $(LOCAL_PATH)/../hifi/xaf/host-apf/utest/include
-
-LOCAL_STATIC_LIBRARIES := libxtensa_proxy
-endif
 include $(BUILD_SHARED_LIBRARY)
-

@@ -24,6 +24,12 @@ AB_OTA_PARTITIONS += \
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+# BootControl HAL
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-impl.recovery \
+    android.hardware.boot@1.1-service
+
 PRODUCT_COPY_FILES +=	$(TARGET_PREBUILT_KERNEL):kernel \
 			$(TARGET_PREBUILT_DTB):hi3660-hikey960.dtb
 

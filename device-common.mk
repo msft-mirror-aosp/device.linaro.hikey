@@ -272,3 +272,6 @@ PRODUCT_PACKAGES += \
 # TODO: disable this service once we implement system suspend
 PRODUCT_PACKAGES += \
     suspend_blocker
+
+TARGET_PRODUCT_PROP := $(LOCAL_PATH)/product.prop
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/linaro/hikey/bluetooth

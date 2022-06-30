@@ -2,7 +2,7 @@ ifneq ($(filter hikey%, $(TARGET_DEVICE)),)
 ifneq ($(TARGET_NO_DTIMAGE), true)
 # make sure the vendor package is present
 
-include device/linaro/dragonboard/vendor-package-ver.mk
+include device/linaro/hikey/vendor-package-ver.mk
 ifneq (,$(wildcard $(LINARO_VENDOR_PATH)/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/version.mk))
 
 MKDTIMG := $(LINARO_VENDOR_PATH)/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/bootloader/mkdtimg

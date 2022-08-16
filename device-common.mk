@@ -89,8 +89,7 @@ PRODUCT_PROPERTY_OVERRIDES += wifi.interface=wlan0 \
 PRODUCT_RUNTIMES := runtime_libart_default
 
 # Build default bluetooth a2dp and usb audio HALs
-PRODUCT_PACKAGES += audio.a2dp.default \
-		    audio.bluetooth.default \
+PRODUCT_PACKAGES += audio.bluetooth.default \
 		    audio.usb.default \
 		    audio.r_submix.default \
 		    tinyplay

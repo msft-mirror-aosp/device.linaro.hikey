@@ -36,7 +36,6 @@ else
   $(warning Please download and extract the vendor binaries by running the following script:)
   $(warning    ./device/linaro/hikey/fetch-vendor-package.sh )
 endif
-$(warning EXPECTED_LINARO_VENDOR_VERSION=$(EXPECTED_LINARO_VENDOR_VERSION))
 
 ifneq (,$(filter $(TARGET_PRODUCT),hikey960_tv hikey_tv))
 # Setup TV Build

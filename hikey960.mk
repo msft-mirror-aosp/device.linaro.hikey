@@ -8,6 +8,10 @@ TARGET_PREBUILT_DTB := $(LOCAL_KERNEL_HOME)/hi3660-hikey960.dtb
 ifndef HIKEY_USES_GKI
   ifeq ($(TARGET_KERNEL_USE), 5.4)
     HIKEY_USES_GKI := true
+  else
+    ifeq ($(TARGET_KERNEL_USE), mainline)
+      HIKEY_USES_GKI := true
+    endif
   endif
 endif
 

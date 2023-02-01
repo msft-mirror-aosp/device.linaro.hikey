@@ -36,7 +36,6 @@ else
   $(warning Please download and extract the vendor binaries by running the following script:)
   $(warning    ./device/linaro/hikey/fetch-vendor-package.sh )
 endif
-$(warning EXPECTED_LINARO_VENDOR_VERSION=$(EXPECTED_LINARO_VENDOR_VERSION))
 
 ifneq (,$(filter $(TARGET_PRODUCT),hikey960_tv hikey_tv))
 # Setup TV Build
@@ -89,8 +88,7 @@ PRODUCT_PROPERTY_OVERRIDES += wifi.interface=wlan0 \
 PRODUCT_RUNTIMES := runtime_libart_default
 
 # Build default bluetooth a2dp and usb audio HALs
-PRODUCT_PACKAGES += audio.a2dp.default \
-		    audio.bluetooth.default \
+PRODUCT_PACKAGES += audio.bluetooth.default \
 		    audio.usb.default \
 		    audio.r_submix.default \
 		    tinyplay

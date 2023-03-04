@@ -1,20 +1,22 @@
 ifndef TARGET_KERNEL_USE
-TARGET_KERNEL_USE=5.4
+TARGET_KERNEL_USE=5.10
 endif
 LOCAL_KERNEL_HOME ?= device/linaro/hikey-kernel/hikey960/$(TARGET_KERNEL_USE)
 TARGET_PREBUILT_KERNEL := $(LOCAL_KERNEL_HOME)/Image.gz-dtb
 TARGET_PREBUILT_DTB := $(LOCAL_KERNEL_HOME)/hi3660-hikey960.dtb
 
 ifndef HIKEY_USES_GKI
-  ifeq ($(TARGET_KERNEL_USE), 5.4)
+  ifeq ($(TARGET_KERNEL_USE), mainline)
     HIKEY_USES_GKI := true
   else
-    ifeq ($(TARGET_KERNEL_USE), mainline)
+    KERNEL_MAJ := $(word 1, $(subst ., ,$(TARGET_KERNEL_USE)))
+    # kernel since 5.X should support GKI
+    # only 4.X kernels do not support GKI
+    ifneq ($(KERNEL_MAJ), 4)
       HIKEY_USES_GKI := true
     endif
   endif
 endif
-
 
 include $(LOCAL_PATH)/vendor-package-ver.mk
 

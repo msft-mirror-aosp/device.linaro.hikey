@@ -14,6 +14,13 @@
 # limitations under the License.
 #
 
+ifeq ($(HIKEY960_ENABLE_AVF), true)
+# Based on the instructions in the following link:
+#   https://android.googlesource.com/platform/packages/modules/Virtualization/+/refs/heads/master/microdroid/README.md
+# Tested with the android13-5.10 and android-mainline kernels.
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
+endif
+
 # Enable Virtual A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \

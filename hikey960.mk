@@ -6,6 +6,9 @@ TARGET_PREBUILT_KERNEL := $(LOCAL_KERNEL_HOME)/Image.gz-dtb
 TARGET_PREBUILT_DTB := $(LOCAL_KERNEL_HOME)/hi3660-hikey960.dtb
 
 ifndef HIKEY_USES_GKI
+  ## Please check the following link for the android-mainline
+  ## kernel build instructions:
+  ##   https://www.96boards.org/documentation/consumer/hikey/hikey960/build/android-mainline.md.html
   ifeq ($(TARGET_KERNEL_USE), mainline)
     HIKEY_USES_GKI := true
   else

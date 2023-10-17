@@ -3,7 +3,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/linaro/hikey/hikey-common.mk)
 $(call inherit-product-if-exists, vendor/linaro/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/hikey.mk)
 
-PRODUCT_PROPERTY_OVERRIDES += ro.opengles.version=131072
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.opengles.version=131072 \
+  ro.hardware.egl=mali
 
 PRODUCT_NAME := hikey
 PRODUCT_DEVICE := hikey

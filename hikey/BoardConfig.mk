@@ -9,6 +9,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 BOARD_KERNEL_CMDLINE := androidboot.hardware=hikey firmware_class.path=/vendor/firmware efi=noruntime init=/init
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/f723d000.dwmmc0
 BOARD_KERNEL_CMDLINE += console=ttyAMA3,115200 androidboot.console=ttyAMA3
+BOARD_KERNEL_CMDLINE += androidboot.verifiedbootstate=orange
 
 ifneq ($(TARGET_SENSOR_MEZZANINE),)
 BOARD_KERNEL_CMDLINE += overlay_mgr.overlay_dt_entry=hardware_cfg_$(TARGET_SENSOR_MEZZANINE)

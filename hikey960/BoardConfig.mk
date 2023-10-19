@@ -11,6 +11,7 @@ TARGET_NO_DTIMAGE := false
 BOARD_KERNEL_CMDLINE := androidboot.hardware=hikey960 firmware_class.path=/vendor/firmware efi=noruntime init=/init
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/ff3b0000.ufs
 BOARD_KERNEL_CMDLINE += loglevel=15 androidboot.slot_suffix=_a
+BOARD_KERNEL_CMDLINE += androidboot.verifiedbootstate=orange
 
 ifeq ($(HIKEY960_ENABLE_AVF), true)
 # The GKI kernel set protected mode by default via gki_defconfig,

@@ -52,7 +52,9 @@ $(call inherit-product, device/linaro/hikey/hikey960/device-hikey960.mk)
 $(call inherit-product, device/linaro/hikey/device-common.mk)
 $(call inherit-product-if-exists, vendor/linaro/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/hikey960.mk)
 
-PRODUCT_PROPERTY_OVERRIDES += ro.opengles.version=196608
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.opengles.version=196608 \
+  ro.hardware.egl=mali
 
 #
 # Overrides

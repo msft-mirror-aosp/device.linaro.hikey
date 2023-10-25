@@ -18,8 +18,8 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/hikey960_tv.mk
 
 COMMON_LUNCH_CHOICES := \
-    hikey-userdebug \
-    hikey64_only-userdebug \
-    hikey_tv-userdebug \
-    hikey960-userdebug \
-    hikey960_tv-userdebug
+    hikey-trunk_staging-userdebug \
+    hikey64_only-trunk_staging-userdebug \
+    hikey_tv-trunk_staging-userdebug \
+    hikey960-trunk_staging-userdebug \
+    hikey960_tv-trunk_staging-userdebug

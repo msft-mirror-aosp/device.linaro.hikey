@@ -56,6 +56,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.opengles.version=196608 \
   ro.hardware.egl=mali
 
+## This is a workaround for the Bluetooth sanitize shadow call stack (SCS)
+## crash reported here: https://issuetracker.google.com/issues/302408537,
+## until the new version Mali binaries released.
+## For details of the root cause and the cts vts tests comparison between
+## the preloading and non-preloading builds, please check the above issue.
+PRODUCT_PROPERTY_OVERRIDES += ro.zygote.disable_gl_preload=1
+
 #
 # Overrides
 PRODUCT_NAME := hikey960

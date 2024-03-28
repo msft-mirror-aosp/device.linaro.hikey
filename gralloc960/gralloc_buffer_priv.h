@@ -83,7 +83,8 @@ static inline int gralloc_buffer_attr_map(struct private_handle_t *hnd, int read
 		prot_flags |= PROT_WRITE;
 	}
 
-	hnd->attr_base = mmap(NULL, PAGE_SIZE, prot_flags, MAP_SHARED, hnd->share_attr_fd, 0);
+	hnd->attr_base =
+		mmap(NULL, getpagesize(), prot_flags, MAP_SHARED, hnd->share_attr_fd, 0);
 
 	if (hnd->attr_base == MAP_FAILED)
 	{
@@ -113,7 +114,7 @@ static inline int gralloc_buffer_attr_unmap(struct private_handle_t *hnd)
 
 	if (hnd->attr_base != MAP_FAILED)
 	{
-		if (munmap(hnd->attr_base, PAGE_SIZE) == 0)
+		if (munmap(hnd->attr_base, getpagesize()) == 0)
 		{
 			hnd->attr_base = MAP_FAILED;
 			rval = 0;

@@ -6,6 +6,9 @@ TARGET_PREBUILT_KERNEL := $(LOCAL_KERNEL_HOME)/Image.gz-dtb
 TARGET_PREBUILT_DTB := $(LOCAL_KERNEL_HOME)/hi3660-hikey960.dtb
 
 ifndef HIKEY_USES_GKI
+  ## Please check the following link for the android-mainline
+  ## kernel build instructions:
+  ##   https://www.96boards.org/documentation/consumer/hikey/hikey960/build/android-mainline.md.html
   ifeq ($(TARGET_KERNEL_USE), mainline)
     HIKEY_USES_GKI := true
   else
@@ -49,7 +52,16 @@ $(call inherit-product, device/linaro/hikey/hikey960/device-hikey960.mk)
 $(call inherit-product, device/linaro/hikey/device-common.mk)
 $(call inherit-product-if-exists, vendor/linaro/hikey960/$(EXPECTED_LINARO_VENDOR_VERSION)/hikey960.mk)
 
-PRODUCT_PROPERTY_OVERRIDES += ro.opengles.version=196608
+PRODUCT_PROPERTY_OVERRIDES += \
+  ro.opengles.version=196608 \
+  ro.hardware.egl=mali
+
+## This is a workaround for the Bluetooth sanitize shadow call stack (SCS)
+## crash reported here: https://issuetracker.google.com/issues/302408537,
+## until the new version Mali binaries released.
+## For details of the root cause and the cts vts tests comparison between
+## the preloading and non-preloading builds, please check the above issue.
+PRODUCT_PROPERTY_OVERRIDES += ro.zygote.disable_gl_preload=1
 
 #
 # Overrides

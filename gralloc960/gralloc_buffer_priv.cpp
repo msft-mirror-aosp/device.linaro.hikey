@@ -40,6 +40,7 @@
 int gralloc_buffer_attr_allocate(private_handle_t *hnd)
 {
 	int rval = -1;
+	const size_t page_size = getpagesize();
 
 	if (!hnd)
 	{
@@ -52,7 +53,7 @@ int gralloc_buffer_attr_allocate(private_handle_t *hnd)
 		close(hnd->share_attr_fd);
 	}
 
-	hnd->share_attr_fd = ashmem_create_region("gralloc_shared_attr", PAGE_SIZE);
+	hnd->share_attr_fd = ashmem_create_region("gralloc_shared_attr", page_size);
 
 	if (hnd->share_attr_fd < 0)
 	{
@@ -73,7 +74,7 @@ int gralloc_buffer_attr_allocate(private_handle_t *hnd)
 	 * Because of this we keep the PROT_EXEC flag.
 	 */
 
-	hnd->attr_base = mmap(NULL, PAGE_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, hnd->share_attr_fd, 0);
+	hnd->attr_base = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_SHARED, hnd->share_attr_fd, 0);
 
 	if (hnd->attr_base != MAP_FAILED)
 	{
@@ -83,8 +84,8 @@ int gralloc_buffer_attr_allocate(private_handle_t *hnd)
 		 */
 		attr_region *region = (attr_region *)hnd->attr_base;
 
-		memset(hnd->attr_base, 0xff, PAGE_SIZE);
-		munmap(hnd->attr_base, PAGE_SIZE);
+		memset(hnd->attr_base, 0xff, page_size);
+		munmap(hnd->attr_base, page_size);
 		hnd->attr_base = MAP_FAILED;
 	}
 	else
@@ -132,7 +133,7 @@ int gralloc_buffer_attr_free(private_handle_t *hnd)
 	if (hnd->attr_base != MAP_FAILED)
 	{
 		ALOGW("Warning shared attribute region mapped at free. Unmapping");
-		munmap(hnd->attr_base, PAGE_SIZE);
+		munmap(hnd->attr_base, getpagesize());
 		hnd->attr_base = MAP_FAILED;
 	}
 

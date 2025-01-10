@@ -5,7 +5,6 @@ on fs
 
 on post-fs
     # Set supported opengles version
-    setprop ro.hardware.hwcomposer drm_hikey960
 
 on late-fs
     mount_all /vendor/etc/fstab.${ro.hardware} --late

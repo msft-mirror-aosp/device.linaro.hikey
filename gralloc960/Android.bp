@@ -8,11 +8,26 @@ package {
     default_applicable_licenses: ["device_linaro_hikey_license"],
 }
 
-cc_library_shared {
-    name: "hwcomposer.drm_hikey960",
-    defaults: ["hwcomposer.drm_defaults"],
-    srcs: [
-        ":drm_hwcomposer_common",
-        ":drm_hwcomposer_platformhisi",
+cc_binary {
+    name: "android.hardware.composer.hwc3-service.drm.hikey960",
+    defaults: [
+        "android.hardware.composer.hwc3-service.drm.defaults",
     ],
+    srcs: [":drm_hwcomposer_platformhisi"],
+
+    relative_install_path: "hw",
+    vendor: true,
+
+    vintf_fragments: [":drm_hwcomposer_vintf_manifest"],
+    init_rc: [":gen-drm_hwcomposer_hwc3_init_rc_hikey960"],
+}
+
+genrule {
+    name: "gen-drm_hwcomposer_hwc3_init_rc_hikey960",
+    srcs: [":drm_hwcomposer_init_rc"],
+    out: ["hwc3-drm.hikey960.rc"],
+    cmd: "sed " +
+        // Append .hikey960 to the executable name:
+        "-e 's%hwc3-service.drm%hwc3-service.drm.hikey960%' " +
+        "$(in) > $(out)",
 }

@@ -42,7 +42,11 @@ PRODUCT_PACKAGES += power.hikey
 # Sensors HAL
 PRODUCT_PACKAGES += sensors.hikey
 
-PRODUCT_PACKAGES += hwcomposer.drm_hikey
+# Hardware Composer HAL
+PRODUCT_PACKAGES += android.hardware.composer.hwc3-service.drm.hikey
+PRODUCT_VENDOR_PROPERTIES += \
+	ro.vendor.hwc.drm.use_config_groups=0 \
+	ro.vendor.hwc.drm.present_fence_not_reliable=1
 
 # Include mali blobs from ARM
 PRODUCT_PACKAGES += libGLES_mali

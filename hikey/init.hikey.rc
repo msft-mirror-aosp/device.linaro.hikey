@@ -5,5 +5,4 @@ on fs
 
 on post-fs
     # Set supported opengles version
-    setprop ro.hardware.hwcomposer drm_hikey
 

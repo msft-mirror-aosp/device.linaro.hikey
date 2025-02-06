@@ -87,7 +87,11 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += sys.usb.controller=ff100000.dwc3
 
 PRODUCT_PACKAGES += sensors.hikey960
 
-PRODUCT_PACKAGES += hwcomposer.drm_hikey960
+# Hardware Composer HAL
+PRODUCT_PACKAGES += android.hardware.composer.hwc3-service.drm.hikey960
+PRODUCT_VENDOR_PROPERTIES += \
+        ro.vendor.hwc.drm.use_config_groups=0 \
+        ro.vendor.hwc.drm.present_fence_not_reliable=1
 
 ifneq ($(TARGET_NO_RECOVERY),true)
 PRODUCT_COPY_FILES += \

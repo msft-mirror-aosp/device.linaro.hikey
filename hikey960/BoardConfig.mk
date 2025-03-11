@@ -6,7 +6,7 @@ TARGET_BOARD_PLATFORM := hikey960
 TARGET_CPU_VARIANT := cortex-a73
 TARGET_2ND_CPU_VARIANT := cortex-a73
 
-TARGET_NO_DTIMAGE ?= false
+TARGET_NO_DTIMAGE ?= true
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=hikey960 firmware_class.path=/vendor/firmware efi=noruntime init=/init
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/ff3b0000.ufs

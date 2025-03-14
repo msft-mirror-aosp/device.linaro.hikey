@@ -109,9 +109,10 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += vndk_package
 
+# DRM HAL
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3-service.clearkey \
-    android.hardware.drm@1.3-service.widevine \
+    android.hardware.drm-service.clearkey \
+    android.hardware.drm-service.widevine
 
 # Graphics HAL
 PRODUCT_PACKAGES += \

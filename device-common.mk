@@ -53,7 +53,7 @@ endif
 # Set vendor kernel path
 PRODUCT_VENDOR_KERNEL_HEADERS := device/linaro/hikey/kernel-headers
 
-PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_SHIPPING_API_LEVEL := 32
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 
@@ -100,12 +100,19 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.3-impl \
     android.hardware.bluetooth.audio@2.0-impl
 
+# Bluetooth Audio AIDL HAL
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth.audio-impl \
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration_7_0.xml \
 
 PRODUCT_PACKAGES += vndk_package
 
+# DRM HAL
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3-service.clearkey \
-    android.hardware.drm@1.3-service.widevine \
+    android.hardware.drm-service.clearkey \
+    android.hardware.drm-service.widevine
 
 # Graphics HAL
 PRODUCT_PACKAGES += \
@@ -240,7 +247,6 @@ PRODUCT_COPY_FILES += \
 USE_XML_AUDIO_POLICY_CONF := 1
 PRODUCT_COPY_FILES += \
     device/linaro/hikey/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
-    device/linaro/hikey/audio/audio_policy_configuration_bluetooth_legacy_hal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_bluetooth_legacy_hal.xml \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration_7_0.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration_7_0.xml \
@@ -257,11 +263,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/linaro/hikey/init.common.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.common.rc \
 
+# Health HAL
+PRODUCT_PACKAGES += com.google.cf.health
 
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl-cuttlefish \
-    android.hardware.health@2.1-service
+# Thermal HAL
+PRODUCT_PACKAGES += com.android.hardware.thermal
 
 # TODO: disable this service once we implement system suspend
 PRODUCT_PACKAGES += \
